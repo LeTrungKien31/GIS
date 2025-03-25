@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+{% load static %}
+
+{% block title %}
+Kết quả tìm kiếm
+{% endblock %}
+
+{%block map%}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/leaflet.css' %}">
+    <script src="{% static 'js/leaflet.js' %}"> </script>
+{% endblock %}
+
+{% block content %}
+    <section class="special-services">
+        <div class="container-fluid">
+            <div class="section-title text-center" >
+                <h1>Kết quả tìm kiếm cho: "{{ query }}"</h1>
+            </div>
+                <div class="row" style="height: 800px">
+                    <div id="map" style="width:100%; height:100%"></div>
+                </div>
+
+                <script>
+                    var map = L.map('map').setView([10.7769, 106.7009], 12); // Vị trí mặc định
+
+                    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                        attribution: '&copy; OpenStreetMap contributors'
+                    }).addTo(map);
+
+                    var supermarkets = JSON.parse('{{ supermarkets|safe }}'); // Kiểm tra dữ liệu JSON có đúng không
+
+                    supermarkets.forEach(function(s) {
+                        L.marker([s.latitude, s.longitude]).addTo(map)
+                            .bindPopup(`<b>${s.name}</b><br>${s.address}`);
+                    });
+                </script>
+            </div>
+</section>
+{%endblock%}

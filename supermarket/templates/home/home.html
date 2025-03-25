@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+{%block content%}
+    <h1>Danh Sách Siêu Thị</h1>
+    <script>
+        document.getElementById("search-form").addEventListener("submit", function(e) {
+            e.preventDefault();  // Ngăn chặn reload trang
+
+            var query = document.getElementById("search-input").value.trim();
+            if (query) {
+                // Chuyển hướng đến trang search với query string
+                window.location.href = `/search?q=${encodeURIComponent(query)}`;
+            }
+        });
+    </script>
+            <ul class="sieuthi">
+                {% for supermarket in supermarkets %}
+                        <li class="sieuthis">
+                            <a href="{% url 'supermarket_detail' supermarket.id %}">    
+                                <strong>{{ supermarket.name }}</strong><br>
+                                <img class="imgst"src="{% static 'images/' %}{{ supermarket.image }}" alt="{{ supermarket.name }}" width="100">
+                                Địa chỉ: {{ supermarket.address }}<br>
+                                
+                            </a>
+                        </li>
+                    {% endfor %}
+            </ul> 
+{%endblock%}
+

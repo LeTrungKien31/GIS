@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+{% load static %}
+
+{% block title %}
+    Bản đồ siêu thị
+{% endblock %}
+
+{% block map %}
+    <link rel="stylesheet" href="{% static 'css/leaflet.css' %}">
+    <script src="{% static 'js/leaflet.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+    <section class="special-services">
+        <div class="container-fluid">
+            <div class="section-title text-center">
+                <h2>Bản đồ Siêu Thị</h2>
+            </div>
+            <div class="row" style="height: 800px">
+                <div id="map" style="width:100%; height:100%"></div>
+            </div>
+        </div>
+    </section>
+
+    <script id="supermarket-data" type="application/json">
+        {{ supermarkets|safe }}
+    </script>
+{% endblock %}
+
+{% block script %}
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var map = L.map('map').setView([10.7769, 106.7009], 12); // Điểm mặc định
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; OpenStreetMap contributors'
+        }).addTo(map);
+
+        // Lấy dữ liệu JSON từ thẻ script
+        var supermarketData = JSON.parse(document.getElementById("supermarket-data").textContent);
+
+        supermarketData.forEach(function (s) {
+            L.marker([s.latitude, s.longitude])
+                .addTo(map)
+                .bindPopup(`<b>${s.name}</b><br>${s.address}`);
+        });
+    });
+</script>
+{% endblock %}
