@@ -1,0 +1,32 @@
+{%extends "layout.html"%}
+{% load static %}
+{%block map%}
+    <link rel="stylesheet" href="{% static 'css/leaflet.css' %}">
+    <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/gh/tomickigrzegorz/autocomplete@1.8.6/dist/css/autocomplete.min.css"/>
+    <script src="{% static 'js/leaflet.js' %}"> </script>
+    <script src="https://cdn.jsdelivr.net/gh/tomickigrzegorz/autocomplete@1.8.6/dist/js/autocomplete.min.js"></script>
+    
+{% endblock %}
+{% block content %}
+    <section class="special-services">
+        <div class="section-title text-center">
+            <h2>Tìm kiếm Địa chỉ</h2>
+        </div> 
+        <div class="container mb-3">
+            <div class="auto-search-wrapper loupe text-center">
+                
+                <input type="text" autocomplete="off" id="search" placeholder="Nhập vào tên thành phố" />
+            </div>
+        </div>
+
+        <div class="container-fluid">  
+            <div class="row"  >
+                <div id="map" style="height: 800px; width:100%"></div>
+            </div>
+        </div>
+    </section>
+{%endblock%}
+{% block script %}
+    <script src="{% static 'js/map/search_location.js' %}"> </script>
+{% endblock %}

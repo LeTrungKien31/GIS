@@ -1,20 +1,19 @@
 {% extends "layout.html" %}
 {% load static %}
-<link rel="stylesheet" href="{% static 'css/style.css' %}">
+{% block title %}
+    Trang Chủ
+{% endblock %}
 
+{% block map %}
+{% comment %} <link rel="stylesheet" href="{% static 'css/style.css' %}"> {% endcomment %}
+{%endblock%}
 {%block content%}
-    <h1>Danh Sách Siêu Thị</h1>
-    <script>
-        document.getElementById("search-form").addEventListener("submit", function(e) {
-            e.preventDefault();  // Ngăn chặn reload trang
-
-            var query = document.getElementById("search-input").value.trim();
-            if (query) {
-                // Chuyển hướng đến trang search với query string
-                window.location.href = `/search?q=${encodeURIComponent(query)}`;
-            }
-        });
-    </script>
+<section class="special-services">
+    <div class="container-fluid">
+        <div class="section-title text-center">
+            <h2>Danh sách Siêu Thị & Chợ</h2>
+        </div>
+    </div>
             <ul class="sieuthi">
                 {% for supermarket in supermarkets %}
                         <li class="sieuthis">
@@ -27,5 +26,19 @@
                         </li>
                     {% endfor %}
             </ul> 
+</section>
+{%endblock%}
+{%block script%}
+<script>
+    document.getElementById("search-form").addEventListener("submit", function(e) {
+        e.preventDefault();  // Ngăn chặn reload trang
+
+        var query = document.getElementById("search-input").value.trim();
+        if (query) {
+            // Chuyển hướng đến trang search với query string
+            window.location.href = `/search?q=${encodeURIComponent(query)}`;
+        }
+    });
+</script>
 {%endblock%}
 

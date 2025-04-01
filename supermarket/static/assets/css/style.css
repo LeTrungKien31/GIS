@@ -571,7 +571,7 @@ p {
   position: absolute;
   left: 0;
   background: #222222;
-  width: 200px;
+  width: 300px;
   top: 120%;
   opacity: 0;
   visibility: hidden;
@@ -598,7 +598,6 @@ p {
   font-family: "Gilroy-Medium";
   -webkit-transition: 0.3s;
   transition: 0.3s;
-  z-index: 2;
 }
 
 .header-area .main-menu li .sub-menu li a:hover {
@@ -611,6 +610,37 @@ p {
   top: 100%;
 }
 
+  .sieuthi{
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly; /* Căn đều khoảng cách */
+  max-width: 1000px; /* Tăng kích thước tối đa */
+  margin: 0 auto; /* Căn giữa danh sách */
+  z-index: 1;
+}
+.imgst {
+  width: 100%;  /* Ảnh sẽ tự động co theo kích thước li */
+  height: 180px; /* Tăng kích thước ảnh */
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Mỗi mục siêu thị */
+.sieuthis {
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 5px 8px rgba(0, 0, 0, 0.15);
+  padding: 20px;
+  margin: 15px;
+  width: calc(50% - 30px); /* Chia thành 2 cột, trừ đi margin */
+  text-align: left;
+  transition: transform 0.2s;
+  box-sizing: border-box;
+  font-size: 18px; /* Tăng kích thước chữ */
+}
 .header-area .right-content {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -3404,6 +3434,7 @@ aside,
 .special-services {
   position: relative;
   padding-bottom: 75px;
+  
 }
 
 .special-services.our-services {

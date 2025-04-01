@@ -24,3 +24,7 @@ def search_supermarkets(request):
         "supermarkets": json.dumps(supermarkets)  # Đảm bảo dữ liệu là JSON
     }
     return render(request, 'home/search.html', context)
+
+def get_supermarkets(request):
+    supermarkets = Supermarket.objects.all().values("id", "name", "latitude", "longitude")
+    return JsonResponse(list(supermarkets), safe=False)

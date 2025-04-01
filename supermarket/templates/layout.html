@@ -41,7 +41,10 @@
                     <li>
                         <a href="javascript:void(0)">Bản đồ</a>
                         <ul class="sub-menu">
-                            <li><a href="{% url 'maps:test' %}">Cơ bản</a></li>
+                            <li><a href="{% url 'maps:test' %}">Bản Đồ Thành Phố</a></li>
+                            <li><a href="{% url 'maps:hiddenmap' %}">Phân Loại Chợ và Siêu Thị</a></li>
+                            <li><a href="{% url 'maps:search_location' %}">Tìm Kiếm Địa Chỉ Khác</a></li>
+                            <li><a href="{% url 'maps:guide' %}">Hướng Dẫn Sử Dụng</a></li>
                         </ul>
                     </li>
                     <li><a href="/gioi-thieu">Giới thiệu</a></li>
@@ -49,7 +52,7 @@
                 <div class="ml-auto">
                     <div class="search-bar">
                         <form action="{% url 'search_supermarkets' %}" method="get">
-                            <input class="ipsearch"type="text" name="q" placeholder="Nhập tên siêu thị..." required>
+                            <input class="ipsearch"type="text" name="q" placeholder="Nhập tên cần tìm..." required>
                             <button type="submit"> <img src="{% static 'assets/img/logo/search.svg' %}" alt="search logo" /> </button>
                         </form>
                     </div>
